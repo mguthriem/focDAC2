@@ -19,6 +19,8 @@ def SNAPStateParMgr(run):
     'focGroupDBin':[[-0.001,-0.001,-0.001,-0.001,-0.001,-0.001],[-0.001]]
     }
 
+    return instRedPars.update(stateRedPars) #combined dictionary with all pars
+
     #populate variables from the dictionary values
 
     stateID = stateRedPars['stateID']
