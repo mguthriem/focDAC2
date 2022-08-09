@@ -5,14 +5,15 @@ import importlib
 importlib.reload(DAC)
 importlib.reload(iPrm)
 
-AllRuns = [57248,57245,57244]
+AllRuns = [57245]
 maskFileName=['']
 # 'snap48741msk.xml',
 # 'snap49870msk.xml'
 # ] 
 
-cleanUp = True
-GSASOut = False  
+cleanUp = False
+GSASOut = False
+CU = True #switch to convert units instead of calibration  
 
 ########################################
 # MAIN Workflow
@@ -51,7 +52,7 @@ for runidx,run in enumerate(AllRuns):
 
     DAC.setupStateGrouping(sPrm)
 
-  TOF_runWS = DAC.preProcSNAP(run,rPrm,sPrm)  
+  TOF_runWS = DAC.preProcSNAP(run,rPrm,sPrm,CU)  
   gpString = TOF_runWS + '_monitors' #a list of all ws to group
   
   #masking
@@ -97,7 +98,7 @@ for runidx,run in enumerate(AllRuns):
     
     SmoothData(InputWorkspace=f'DSpac_rawVmB_{mskTag}_{focGrp}_strp', 
     OutputWorkspace=f'DSpac_VCorr_{mskTag}_{focGrp}',
-    NPoints='9')
+    NPoints='40')
 
 #Apply vanadium correction, and trim to usable limits
 
@@ -105,7 +106,8 @@ for runidx,run in enumerate(AllRuns):
     RHSWorkspace=f'DSpac_VCorr_{mskTag}_{focGrp}', 
     OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_V')
 
-    Rebin(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_V', 
+    Rebin(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_V', #skip V correction.
+    #Rebin(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}', 
     OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_VR',
     Params='0.5,-0.001,4.5', PreserveEvents=False)
 

@@ -26,7 +26,7 @@ def initPrm(run,case='before'):
 def checkStateChange(run,sPrm):
   #checks if state of run is different from current state
 
-  runStateID = StateFromRunFunction(run)
+  runStateID,runStateDict = StateFromRunFunction(run)
   return runStateID == sPrm['stateID']
 
 def setupStateGrouping(sPrm):
@@ -66,7 +66,7 @@ def getStatePrm(run,case='before'):
   import yaml #
   import numpy as np 
 
-  stateID = StateFromRunFunction(run)
+  stateID,stateDict = StateFromRunFunction(run)
 
   calibPath = iPrm.stateLoc + stateID + '/'
   calibSearchPattern=f'{calibPath}{iPrm.calibFilePre}*.{iPrm.calibFileExt}'
@@ -115,7 +115,7 @@ def getStatePrm(run,case='before'):
         closestAfter = min([calibRunList[i] for i in pos])
         calIndx = calibRunList.index(closestAfter)
 
-  print(f'successfully found calibration file: \n {calibFileList[calIndx]}')
+  #print(f'successfully found calibration file: \n {calibFileList[calIndx]}')
   
   #Now read this to populate the state dictionary
   with open(calibFileList[calIndx], "r") as json_file:
@@ -138,10 +138,13 @@ def findMatchingFileList(pattern):
 #   IPTSLoc= GetIPTS(RunNumber=Run,Instrument=iPrm.inst)
 #   return IPTSLoc
 
-def preProcSNAP(Run,rPrm,sPrm): #initial steps of reduction
+def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
   #preliminary normalisation (to proton charge)
   #calibration, compression of events and summing neighbours to 8x8 superpixels 
   #input: Run: a single run number as integer
+  #rPrm a dictionary with run parameters
+  #sPrm a dictionary with state parameters
+  #CU a flag if True, use convert units instead of applying a calibration
   
   #output: single mantid workspace in TOF
   runIPTS= rPrm['runIPTS'] 
@@ -159,8 +162,9 @@ def preProcSNAP(Run,rPrm,sPrm): #initial steps of reduction
   OutputWorkspace=f'TOF_{Run}',
   WallClockTolerance=sPrm['wallClockTol'])
 
-  ApplyDiffCal(InstrumentWorkspace=f'TOF_{Run}',
-  CalibrationFile=iPrm.stateLoc+sPrm['stateID']+'/'+sPrm['calFileName'])
+  if not CU:
+    ApplyDiffCal(InstrumentWorkspace=f'TOF_{Run}',
+    CalibrationFile=iPrm.stateLoc+sPrm['stateID']+'/'+sPrm['calFileName'])
 
   SumNeighbours(InputWorkspace=f'TOF_{Run}',
   OutputWorkspace=f'TOF_{Run}',
@@ -181,7 +185,7 @@ def makeRawVCorr(VRun,VBRun,case):
 
   sPrm = getStatePrm(VRun,case)
   rPrm = initPrm(VRun,case) 
-  Vws = preProcSNAP(VRun,rPrm,sPrm)
+  Vws = preProcSNAP(VRun,rPrm,sPrm,False)
 
   #by definition, state must be the same for V and VB, so don't update
   #TODO: create a script that returns true if two input runs
@@ -190,7 +194,7 @@ def makeRawVCorr(VRun,VBRun,case):
   #TODO: make able to handle VRun and VBRun being lists
 
   rPrm = initPrm(VBRun,case) 
-  VBws = preProcSNAP(VBRun,rPrm,sPrm)
+  VBws = preProcSNAP(VBRun,rPrm,sPrm, False)
 
   #I'm aware that an attenuation correction should be done here, but not yet implemented.
   Minus(LHSWorkspace=Vws,
@@ -209,7 +213,6 @@ def makeRawVCorr(VRun,VBRun,case):
   rawVCorrFilePre = 'RVMB'
   rawVCorrFileExt = '.nxs'
   rawVCorrPath = iPrm.stateLoc + sPrm['stateID'] + '/' + rawVCorrFilePre + str(VRun) + rawVCorrFileExt
-
 
 
   SaveNexus(InputWorkspace='TOF_rawVmB',
@@ -287,6 +290,7 @@ def StateFromRunFunction(runNum):
   #returns stateID and info given a run numner
 
   import h5py
+  from os.path import exists
   import sys
   import SNAP_InstPrm as iPrm
 
@@ -297,31 +301,43 @@ def StateFromRunFunction(runNum):
   nexusExt = iPrm.nexusFileExt
   IPTSLoc = GetIPTS(RunNumber=int(runNum),Instrument=inst)
   fName = IPTSLoc + nexusLoc + '/SNAP_' + str(runNum) + nexusExt
-  print(fName)
-  f = h5py.File(fName, 'r')
+  #print(fName)
+  if exists(fName):
+    f = h5py.File(fName, 'r')
+  else:
+    print(f'ERROR: file:{fName} does not exist')
+    return '00000-00',dict()
+
   fail = False
+
+  stateDict = dict() #dictionary to store state variable values
   try:
       det_arc1 = f.get('entry/DASlogs/det_arc1/value')[0]
+      stateDict['det_arc1']=det_arc1
   except:
       print('ERROR: no value for det_arc1 in nexus file')
       fail = True
   try:    
       det_arc2 = f.get('entry/DASlogs/det_arc2/value')[0]
+      stateDict['det_arc2']=det_arc2
   except:
       print('ERROR: Nexus file doesn\'t contain value for det_arc2')
       fail = True
   try:
       wav = f.get('entry/DASlogs/BL3:Chop:Skf1:WavelengthUserReq/value')[0]
+      stateDict['wav']=wav
   except:
       print('ERROR: Nexus file doesn\'t contain value for central wavelength')
       fail = True
   try:
       freq = f.get('entry/DASlogs/BL3:Det:TH:BL:Frequency/value')[0]
+      stateDict['freq']=freq
   except:
       print('ERROR: Nexus file doesn\'t contain value for frequency')
       fail = True
   try:
       GuideIn = f.get('entry/DASlogs/BL3:Mot:OpticsPos:Pos/value')[0]
+      stateDict['GuideStat']=GuideIn
   except:
       print('ERROR: Nexus file doesn\'t contain guide status')
       fail = True
@@ -332,7 +348,7 @@ def StateFromRunFunction(runNum):
       print('ERROR: Insufficient log data, can\'t determine state')
       stateID='00000-00'
 
-  return stateID
+  return stateID,stateDict
 
 
 def checkSNAPState(floatPar,intPar):
@@ -457,7 +473,7 @@ def checkSNAPState(floatPar,intPar):
 
   if not stateIDMatch:
     print('')
-    togCreateNewList=builtins.input('WARNING: Current state does not exist in State List! Create new state (y/[n])?')
+    togCreateNewList=input('WARNING: Current state does not exist in State List! Create new state (y/[n])?')
     #togCreateNewList
     if togCreateNewList.lower()=='y':
       now = date.today()
@@ -466,9 +482,9 @@ def checkSNAPState(floatPar,intPar):
       fout.writelines(lines)#copy existing state ID's to new file
       acceptableName = False
       while not acceptableName:
-        shortTitle = builtins.input('provide short (up to 15 character) title for state: ')
+        shortTitle = input('provide short (up to 15 character) title for state: ')
         shortTitle = shortTitle[0:15].ljust(15)
-        confirm = builtins.input('confirm title: '+shortTitle+' ([y]/n): ')
+        confirm = input('confirm title: '+shortTitle+' ([y]/n): ')
         if confirm.lower()=='y':
           acceptableName=True
       
