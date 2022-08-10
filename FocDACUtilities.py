@@ -64,23 +64,30 @@ def getStatePrm(run,case='before'):
   import SNAP_InstPrm as iPrm
   import json
   import yaml #
-  import numpy as np 
+  import numpy as np
 
-  stateID,stateDict = StateFromRunFunction(run)
+  errorState = dict()
+  errorState['value']=0
+  errorState['function']='getStatePrm'
+
+  stateID,stateDict,errorState = StateFromRunFunction(run)
+  if errorState['value']!=0:
+    return dict(),errorState
+
 
   calibPath = iPrm.stateLoc + stateID + '/'
   calibSearchPattern=f'{calibPath}{iPrm.calibFilePre}*.{iPrm.calibFileExt}'
   calibFileList = findMatchingFileList(calibSearchPattern)
   if len(calibFileList)==0:
-    print(f'ERROR!: state {stateID} is uncalibrated')
-    return
-
-  #case manual
-  if case.lower() == 'manual':
-    print('Index - Calibration File')
-    for i,str in enumerate(calibFileList):
-      print(f'{i} - {str}\n')
-    calIndx = int(input('Enter index of desired calibration file:'))
+    errorState['value']=1
+    errorState['message']=f'state {stateID} is uncalibrated'
+    return dict(),errorState
+  #case manual - needs to be handled in GUI
+  # if case.lower() == 'manual':
+  #   print('Index - Calibration File')
+  #   for i,str in enumerate(calibFileList):
+  #     print(f'{i} - {str}\n')
+  #   calIndx = int(input('Enter index of desired calibration file:'))
   else: 
     calibRunList = []
     for str in calibFileList:
@@ -102,15 +109,17 @@ def getStatePrm(run,case='before'):
 
     if case.lower() == 'before':
       if len(neg) == 0:
-        print(f'ERROR!: no calibration matching request available in state {stateID}')
-        return
+        errorState['value']=2
+        errorState['message']='no calibration matching request {case} available in state {stateID}'
+        return dict(),errorState
       else:
         closestBefore = max([calibRunList[i] for i in neg]) #closest run number
         calIndx = calibRunList.index(closestBefore) #its index
     elif case.lower() == 'after':
       if len(pos) == 0:
-        print(f'ERROR!: no calibration matching request available in state {stateID}')
-        return
+        errorState['value']=2
+        errorState['message']='no calibration matching request {case} available in state {stateID}'
+        return dict(),errorState
       else:
         closestAfter = min([calibRunList[i] for i in pos])
         calIndx = calibRunList.index(closestAfter)
@@ -121,7 +130,7 @@ def getStatePrm(run,case='before'):
   with open(calibFileList[calIndx], "r") as json_file:
     dictIn = json.load(json_file)
   #print('got config dictionary')
-  return dictIn
+  return dictIn,errorState
 
 def findMatchingFileList(pattern):
   import glob
@@ -288,6 +297,14 @@ def SNAPMsk(runWS,rPrm,sPrm):
 
 def StateFromRunFunction(runNum):
   #returns stateID and info given a run numner
+  #
+  #20220809 - modified error handling. Instead of requesting input from within
+  #function, added an additional variable errorState, with the following meaning
+  #
+  #errorState = 0 : all is well in the World
+  #errorState = 1 : GetIPTS failed. IPTS doesn't exist
+  #errorState = 2 : Insufficient log information in nexus file to determine instrument state
+  #errorState = 3 :  
 
   import h5py
   from os.path import exists
@@ -295,60 +312,80 @@ def StateFromRunFunction(runNum):
   import SNAP_InstPrm as iPrm
 
   #print(iPrm.inst)
+  errorState=dict()
+  errorState['value']=0
+  errorState['function']='StateFromRunFunction'
+  errorState['message']=''
+  errorState['parameters']=[]
 
   inst= iPrm.inst
   nexusLoc = iPrm.nexusDirLoc
   nexusExt = iPrm.nexusFileExt
-  IPTSLoc = GetIPTS(RunNumber=int(runNum),Instrument=inst)
+
+  try:
+    IPTSLoc = GetIPTS(RunNumber=int(runNum),Instrument=inst)
+  except:
+    errorState['value']=1
+    errorState['message']='mantid GetIPTS algorithm failed'
+    errorState['parameters']=[runNum]
+    return '00000-00',dict(),errorState
+
   fName = IPTSLoc + nexusLoc + '/SNAP_' + str(runNum) + nexusExt
   #print(fName)
   if exists(fName):
     f = h5py.File(fName, 'r')
   else:
-    print(f'ERROR: file:{fName} does not exist')
-    return '00000-00',dict()
+    errorState['value']=2
+    errorState['message']='error opening run nexus file'
+    errorState['parameters']=[fName]
+    return '00000-00',dict(),errorState
 
   fail = False
 
   stateDict = dict() #dictionary to store state variable values
+
+  missingLogVal = []
+
   try:
-      det_arc1 = f.get('entry/DASlogs/det_arc1/value')[0]
-      stateDict['det_arc1']=det_arc1
+    det_arc1 = f.get('entry/DASlogs/det_arc1/value')[0]
+    stateDict['det_arc1']=det_arc1
   except:
-      print('ERROR: no value for det_arc1 in nexus file')
-      fail = True
+    missingLogVal.append('det_arc1')
+    fail = True
   try:    
-      det_arc2 = f.get('entry/DASlogs/det_arc2/value')[0]
-      stateDict['det_arc2']=det_arc2
+    det_arc2 = f.get('entry/DASlogs/det_arc2/value')[0]
+    stateDict['det_arc2']=det_arc2
   except:
-      print('ERROR: Nexus file doesn\'t contain value for det_arc2')
-      fail = True
+    missingLogVal.append('det_arc2')
+    fail = True
   try:
-      wav = f.get('entry/DASlogs/BL3:Chop:Skf1:WavelengthUserReq/value')[0]
-      stateDict['wav']=wav
+    wav = f.get('entry/DASlogs/BL3:Chop:Skf1:WavelengthUserReq/value')[0]
+    stateDict['wav']=wav
   except:
-      print('ERROR: Nexus file doesn\'t contain value for central wavelength')
-      fail = True
+    missingLogVal.append('wav')
+    fail = True
   try:
-      freq = f.get('entry/DASlogs/BL3:Det:TH:BL:Frequency/value')[0]
-      stateDict['freq']=freq
+    freq = f.get('entry/DASlogs/BL3:Det:TH:BL:Frequency/value')[0]
+    stateDict['freq']=freq
   except:
-      print('ERROR: Nexus file doesn\'t contain value for frequency')
-      fail = True
+    missingLogVal.append('freq')
+    fail = True
   try:
-      GuideIn = f.get('entry/DASlogs/BL3:Mot:OpticsPos:Pos/value')[0]
-      stateDict['GuideStat']=GuideIn
+    GuideIn = f.get('entry/DASlogs/BL3:Mot:OpticsPos:Pos/value')[0]
+    stateDict['GuideStat']=GuideIn
   except:
-      print('ERROR: Nexus file doesn\'t contain guide status')
-      fail = True
+    missingLogVal.append('GuideStat')
+    fail = True
 
   if not fail:
-      stateID = checkSNAPState([det_arc1,det_arc2,wav,freq,0.0],[GuideIn,0])
+    stateID,errorState = checkSNAPState([det_arc1,det_arc2,wav,freq,0.0],[GuideIn,0])
   else:
-      print('ERROR: Insufficient log data, can\'t determine state')
-      stateID='00000-00'
+    errorState['value']=3
+    errorState['message']='Insufficient log data, can\'t determine state'
+    errorState['parameters']=missingLogVal
+    return '00000-00',dict(),errorState
 
-  return stateID,stateDict
+  return stateID,stateDict,errorState
 
 
 def checkSNAPState(floatPar,intPar):
@@ -358,23 +395,52 @@ def checkSNAPState(floatPar,intPar):
   #
   #20220803 M. Guthrie updated to remove all output to screen in case where state is 
   #successfully identified.
-
+  #
+  #20220809 M. Guthrie removed all requested user input within this function and added
+  # additional errorState dictionary that is returned when something goes wrong. 
+  # errorState needs several keys: 
+  # "value" an integer that together with "function" creates a unique ID for for the error
+  # "function" the name of the function where error occured 
+  # "message" a short string describing the error
+  # "parameters" a list of parameters that may aid in fixing the problem.
+  
   import os
-  import time 
+  import time
+  from os.path import exists 
   from datetime import datetime, date
-  import builtins #bug whereby a different piece of code (not mine) redefined built in function input 
   
-  
+  errorState=dict()
+  errorState['value']=0
+  errorState['message']='All is well'
+  errorState['function']='checkSNAPState'
+  errorState['parameters']=[]
+
   #Find the most recent StateDict and read it
   #print('\nLooking up most recent State Dictionary...')
-  fname = findMostRecentFile('/SNS/SNAP/shared/Calibration/SNAPStateDict*.json') #returns most recent file matching arg
-  stateDict = getConfigDict(fname)
+
+  fPattern = iPrm.stateLoc + 'SNAPStateDict*.json'
+  fname,errorState = findMostRecentFile(fPattern) #returns most recent file matching arg
+  if errorState['value']!= 0:
+    return '00000-00',errorState
+
+  if exists(fname):
+    stateDict = getConfigDict(fname)
+  else:
+    errorState['value']=1
+    errorState['message']='Error opening State Dictionary'
+    errorState['parameters']=[fname]
+    return '00000-00',errorState
   #step through float variables in order, check for a match, if this isn't found append new value
   #while processing generate stateID and check if it's a new one.
 
   stateStr = []
   floatStateID = ''
   newStatePar = 0
+  #for purposes of error reporting, it's possible that multiple float parameters don't match
+  #these should be recorded along with the nearest matching value I will use a list to 
+  # store these instances that can then be passed on up as an error parameter
+
+  nonDictPar = [[]] 
   for i in range(len(floatPar)): 
     key = stateDict["floatParameterOrder"][i] #should be key of i-th parameter
     matchVar = floatPar[i]
@@ -382,21 +448,17 @@ def checkSNAPState(floatPar,intPar):
     #matchingKeyPars is a boolean array of length keyLen that will be true for
     #an element that matches matchVar within tolerance specified in stateDict 
     if np.any(matchingKeyPars):
-      #case where there is a matching value 
+      #case where there is a matching float parameter in dictionary 
       keyID = np.where(matchingKeyPars)[0][0]
-      #print('Found match:',keyID)
-      #totalHits += 1
       stateStr.append('%.1f'%(stateDict[key][keyID]))
     else:
-      #case where no matching values
+      #case where there is no matching float parameter in dictionary
       stateDict[key].append(matchVar) #append as new value to state item
       keyID = keyDiff.shape[0]
       closestMatchIndx = np.argmin(keyDiff)
-      print('\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-      print('WARNING: no matching value for %s found in SNAP Dictionary'%(key))
-      print('Input value:%.2f. Closest match: %.2f, differing by %.4f'%(matchVar,stateDict[key][closestMatchIndx],keyDiff[closestMatchIndx]))
-      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-      #print('No match created new state parameter value:',keyID)
+      errorState['value']=2
+      errorState['message']='at least one state parameter does not match state dictionary'
+      nonDictPar.append([key,matchVar,stateDict[key][closestMatchIndx],keyDiff[closestMatchIndx]])
       stateStr.append('%.1f'%(matchVar))
       newStatePar += 1
     floatStateID += str(keyID)
@@ -413,13 +475,16 @@ def checkSNAPState(floatPar,intPar):
       keyID = np.where(matchingKeyPars)[0][0]
       #totalHits += 1
     else:
+      errorState['value']=2
+      errorState['message']='at least one state parameter does not match state dictionary'
+      nonDictPar.append([key,matchVar,0,0]) #dummy values for now
       print('ERROR: Undefined value for integer state parameter:', key)
     
     if i==0:
       guideStatus = keyID
     intStateID += str(keyID)
 
-# This is where the guide status is set...
+# This is where the guide status written to the descritor state Str...
   if guideStatus == 0:
     stateStr.append('FlightTube')
   elif guideStatus ==1:
@@ -433,26 +498,37 @@ def checkSNAPState(floatPar,intPar):
   if newStatePar == 0:
     pass#print('State consistent with SNAP Dictionary\n')
   else:
+    errorState['parameters']=nonDictPar #list of all non-dictionary parameters, their values, nearest dict values and differences
+    return '00000-00',errorState
     #need to add check that there more than 10 parameters will be created
-    togCreateNewDict = builtins.input('\nNon-Dictionary values found. Add new values to SNAP Dictionary? (y/[n])\n'\
-      '(n.b. only possible if you are an instrument scientist): ')
-    if togCreateNewDict.lower() == 'y':
-      #print('Adding new default values to SNAP Dictionary')
-      now = date.today()
-      newDictFile = '/SNS/SNAP/shared/Calibration/SNAPStateDict_' + now.strftime("%Y%m%d") + '.json'
-      with open(newDictFile, "w") as outfile:
-        json.dump(stateDict, outfile)
-      print('\nCreated:' + newDictFile)
-    else:
-      pass #default is to move on without doing anything.
+    # togCreateNewDict = builtins.input('\nNon-Dictionary values found. Add new values to SNAP Dictionary? (y/[n])\n'\
+    #   '(n.b. only possible if you are an instrument scientist): ')
+    # if togCreateNewDict.lower() == 'y':
+    #   #print('Adding new default values to SNAP Dictionary')
+    #   now = date.today()
+    #   newDictFile = '/SNS/SNAP/shared/Calibration/SNAPStateDict_' + now.strftime("%Y%m%d") + '.json'
+    #   with open(newDictFile, "w") as outfile:
+    #     json.dump(stateDict, outfile)
+    #   print('\nCreated:' + newDictFile)
+    # else:
+    #   pass #default is to move on without doing anything.
   
 # -- testing editing from guest end --- #
 
   #As a final step, confirm if present state is a defined SNAP state and, if not, allow option to create new state
-  fnameStateList = findMostRecentFile('/SNS/SNAP/shared/Calibration/SNAPStateList_*.txt')
+  fnameStateList,errorState = findMostRecentFile('/SNS/SNAP/shared/Calibration/SNAPStateList_*.txt')
+  if errorState['value']!= 0:
+    return '00000-00',errorState
 
-  fin = open(fnameStateList,'r')
-  lines = fin.readlines()
+  if exists(fnameStateList):
+    fin = open(fnameStateList,'r')
+    lines = fin.readlines()
+  else:
+    errorState['value']=3
+    errorState['message']='error: SNAP state list file does not exist.'
+    errorState['parameters']=fnameStateList
+    return '00000-00',errorState
+
   stateIDMatch = False
   for index,line in enumerate(lines):
     if index == 0:
@@ -469,39 +545,41 @@ def checkSNAPState(floatPar,intPar):
         fin.close()
         break
   
-  
-
   if not stateIDMatch:
-    print('')
-    togCreateNewList=input('WARNING: Current state does not exist in State List! Create new state (y/[n])?')
-    #togCreateNewList
-    if togCreateNewList.lower()=='y':
-      now = date.today()
-      newListFile = '/SNS/SNAP/shared/Calibration/SNAPStateList_' + now.strftime("%Y%m%d") + '.txt'
-      fout = open(newListFile,'w')
-      fout.writelines(lines)#copy existing state ID's to new file
-      acceptableName = False
-      while not acceptableName:
-        shortTitle = input('provide short (up to 15 character) title for state: ')
-        shortTitle = shortTitle[0:15].ljust(15)
-        confirm = input('confirm title: '+shortTitle+' ([y]/n): ')
-        if confirm.lower()=='y':
-          acceptableName=True
+    errorState['value']=4
+    errorState['message']='Current state consistent with SNAP Dictionary but does not exist in State List'
+    errorState['parameters']=[stateStr]
+    return '00000-00',errorState
+    # print('')
+    # togCreateNewList=input('WARNING: Current state does not exist in State List! Create new state (y/[n])?')
+    # #togCreateNewList
+    # if togCreateNewList.lower()=='y':
+    #   now = date.today()
+    #   newListFile = '/SNS/SNAP/shared/Calibration/SNAPStateList_' + now.strftime("%Y%m%d") + '.txt'
+    #   fout = open(newListFile,'w')
+    #   fout.writelines(lines)#copy existing state ID's to new file
+    #   acceptableName = False
+    #   while not acceptableName:
+    #     shortTitle = input('provide short (up to 15 character) title for state: ')
+    #     shortTitle = shortTitle[0:15].ljust(15)
+    #     confirm = input('confirm title: '+shortTitle+' ([y]/n): ')
+    #     if confirm.lower()=='y':
+    #       acceptableName=True
       
-      newStateStr = provisionalStateID + '::' + \
-                    shortTitle + '::' + \
-                    'W%s/E%s::'%(stateStr[0],stateStr[1]) + \
-                    'wavelength=%s::'%(stateStr[2]) + \
-                    'Freq=%s::'%(stateStr[3]) + \
-                    stateStr[5] + '\n'
-      fout.write(newStateStr)
-      fout.close()
-      print('Created updated state list:',newListFile)
-      print('New state:',newStateStr)
-    provisionalStateID = '' #no match and no new ID created
+    #   newStateStr = provisionalStateID + '::' + \
+    #                 shortTitle + '::' + \
+    #                 'W%s/E%s::'%(stateStr[0],stateStr[1]) + \
+    #                 'wavelength=%s::'%(stateStr[2]) + \
+    #                 'Freq=%s::'%(stateStr[3]) + \
+    #                 stateStr[5] + '\n'
+    #   fout.write(newStateStr)
+    #   fout.close()
+    #   print('Created updated state list:',newListFile)
+    #   print('New state:',newStateStr)
+    # provisionalStateID = '' #no match and no new ID created
 
 
-  return provisionalStateID  
+  return provisionalStateID,errorState  
 
 def hitWithinTol(stateDict,key,matchPar):
 #checks list item "key" in stateDict for values that match 'matchPar' within
@@ -547,8 +625,16 @@ def findMostRecentFile(pattern):
   import time
   #import os.path, time
   from datetime import datetime
+  
   ShortestTimeDifference = 10000000000 # a large number of seconds
   refDate = datetime.now().timestamp()
+
+  errorState=dict()
+  errorState['value']=0
+  errorState['function']='findMostRecentFile'
+  errorState['message']='All is well'
+  errorState['parameters']=[]
+
   for fname in glob.glob(pattern, recursive=True):
     
     if os.path.isfile(fname):
@@ -564,12 +650,15 @@ def findMostRecentFile(pattern):
   if ShortestTimeDifference == 10000000000:
     print('no matching file found')
     mostRecentFile=''
+    errorState['value']=1
+    errorState['message']='No matching file found'
+    errorState['parameters']=[pattern]
   else:
     #print('Most recent matching file:',mostRecentFile)
     #print('Created: %s'% time.ctime(os.path.getctime(mostRecentFile)))
     pass
 
-  return mostRecentFile
+  return mostRecentFile,errorState
 
 def getConfigDict(FName):
     #print('attempting to open file:',FName)
