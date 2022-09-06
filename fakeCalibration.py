@@ -14,6 +14,7 @@ from datetime import datetime, date
 # 
 
 stateID = '13500-20'
+calRun = 57251
 now = date.today()
 
 #state specific parameters (same for all runs)
@@ -21,26 +22,30 @@ stateRedPars={
 'calibDate':now.strftime("%Y%m%d"),
 'calibBy':'Malcolm',    
 'stateID':stateID,
-'tofMin':4600,
+'tofMin':1500,
 'tofBin':10,
-'calFileName':'SNAP051374_calib_geom_20220805.h5',\
+'calFileName':'SNAP057251_calib_geom_20220831.h5',\
 'tofMax':16600,
-'CRun':[51374],
-'rawVCorrFileName':'RVMB57242.nxs', 
+'CRun':[calRun],
+'rawVCorrFileName':'RVMB57248.nxs', 
 'rawVCorrMaskFileName':'',
 'superPixEdge':8,
 'wallClockTol':60,
 #diffraction grouping set up
-'focGroupLst':['Column','Group','All'],
+#includes temporary fix for arbitrary groupings of columes (for Bianca Ni data)
+#these names are currently defined in FocDACUtilities.setupStateGrouping
+'focGroupLst':['Column','Group','All'],#,'Gp01','Gp02'],
 'focGroupNHst':[6,2,1],
 # 'focGroupDMin':[[0.37,0.40,0.47,0.48,0.58,0.75],[0.48]],
 # 'focGroupDMax':[[2.1,2.3,2.6,2.8,3.5,4.3],[2.8]],
 # 'focGroupDBin':[[-0.001,-0.001,-0.001,-0.001,-0.001,-0.001],[-0.001]]
-'focGroupDMin':[[0.80,0.90,1.05,0.95,1.15,1.48],[0.90,1.15],[1.01]],
-'focGroupDMax':[[2.6,2.9,3.5,3.15,3.85,5.0],[3.75,5.8],[5.8]],
-'focGroupDBin':[[-0.001,-0.001,-0.001,-0.001,-0.001,-0.001],[-0.001,-0.001],[-0.001]]
+'focGroupDMin':[[0.37,0.40,0.47,0.48,0.58,0.75],[0.75,0.75],[0.75]],
+'focGroupDMax':[[2.1,2.3,2.6,2.8,3.5,4.3],[2.8],[4.4,4.4],[4.4]],
+'focGroupDBin':[[-0.001,-0.001,-0.001,-0.001,-0.001,-0.001],[-0.001]]
+# 'focGroupDMin':[[0.338,0.377,0.428,0.458,0.535,0.697],[0.35,0.5],[0.4],[0.85],[0.85]],
+# 'focGroupDMax':[[2.14,2.35,2.65,2.80,3.35,4.20],[2.7,4.6],[5.0],[2.75],[3.1]],
+# 'focGroupDBin':[[-0.00086,-0.00096,-0.0013,-0.00117,-0.00147,-0.00186],[-0.001,-0.001],[-0.0008],[-0.001],[-0.001]]
 }
-
 #Use run number of geometric calibration run to generate name of file and write this as both
 #yaml and json 
  

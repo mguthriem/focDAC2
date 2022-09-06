@@ -13,14 +13,17 @@
 # 7) run this script on that workspace
 # 8) the info on the masked bins is written to a json file
 # 9) this can be applied by successive `MaskBins` operations on a second ws with identical binning to original (masked) ws
-
+#
+# 20220815 M. Guthrie added output recording units. This is important
+#
 from mantid.simpleapi import *
 import matplotlib.pyplot as plt
 import numpy as np
 import json
 
-inputWS = 'snap49870_8x8' #contains masked bins
-outputLoc = '/SNS/SNAP/IPTS-24179/shared/' 
+inputWS = 'snap48746_lam_8x8' #contains masked bins
+outputLoc = '/SNS/SNAP/IPTS-24179/shared/'
+outputName = 'snap48746'
 
 ws = mtd[inputWS]
 h = ws.getHistory()
@@ -35,9 +38,10 @@ for hi in h:
         xmins.append(hi.values()[4].value)
         xmaxs.append(hi.values()[5].value)
         spectraLsts.append(hi.getProperty('InputWorkspaceIndexSet').valueAsStr)
-mskBinsDict = {'xmins':xmins, 'xmaxs':xmaxs, 'spectraLsts':spectraLsts}
+unit = ws.getAxis(0).getUnit().caption()
+mskBinsDict = {'units':unit,'xmins':xmins, 'xmaxs':xmaxs, 'spectraLsts':spectraLsts}
 print(f'Found {len(xmins)} MaskBins operations in history.')
-newDictFile = outputLoc + inputWS + '_binMskInfo.json'
+newDictFile = outputLoc + outputName + '_binMskInfo.json'
 with open(newDictFile, "w") as outfile:
     json.dump(mskBinsDict, outfile)
 print('\nCreated:' + newDictFile)

@@ -1,0 +1,1738 @@
+focDAC2 log (for 5 runs)
+
+[I 2022-08-19 10:48:07.224 ServerApp] Saving file at /SNAPRed_panel_GUI.ipynb
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.08 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 18.95 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.52 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.12 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.96 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 24.70 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 37.53 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.05 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 14.93 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.34 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.85 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.66 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 23.28 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 37.32 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+LoadEventNexus-[Notice] LoadEventNexus started
+LogParser-[Warning] Cannot process ICPevent log. Period 1 assumed for all data.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadEventNexus-[Notice] LoadEventNexus successful, Duration 9.52 seconds
+NormaliseByCurrent-[Notice] NormaliseByCurrent started
+NormaliseByCurrent-[Notice] NormaliseByCurrent successful, Duration 1.24 seconds
+CompressEvents-[Notice] CompressEvents started
+CompressEvents-[Notice] CompressEvents successful, Duration 0.39 seconds
+ApplyDiffCal-[Notice] ApplyDiffCal started
+ApplyDiffCal-[Notice] ApplyDiffCal successful, Duration 5.92 seconds
+SumNeighbours-[Notice] SumNeighbours started
+SumNeighbours-[Notice] SumNeighbours successful, Duration 4.41 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 0.73 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.08 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.04 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.22 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.08 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.18 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.14 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.07 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.04 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.25 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.31 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.17 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.05 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07499 and 2.14435. Maximum value 2.07499 is located on (1392).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0058 and 2.07353. Maximum value 2.00913 is located on (1309).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15426 and 2.227. Maximum value 2.227 is located on (1371).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07656 and 2.14723. Maximum value 2.07656 is located on (1248).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00627 and 2.0752. Maximum value 2.00627 is located on (1190).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15214 and 2.22859. Maximum value 2.2247 is located on (1124).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00297 and 2.07675. Maximum value 2.00297 is located on (911).
+StripPeaks-[Warning] StripPeaks():  Peak Index = 15 @ X = 2.1879  Error: Peak fit with too narrow of peak fwhm = 0.00341605 bin size = 0.00369971 num bins in peak = 1.84666 <3
+StripPeaks-[Notice] StripPeaks successful, Duration 0.99 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.58 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.19 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.69 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.76 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.46 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.59 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14694 and 2.23666. Maximum value 2.14694 is located on (1015).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.91 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.60 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.30 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.65 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.77 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.87 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.40 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14449 and 2.24136. Maximum value 2.14449 is located on (1051).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.86 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.54 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.34 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.55 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.80 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.16 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.27 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.67 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.47 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.07 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.37 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.52 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.99 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 0.95 seconds
+StripPeaks-[Notice] StripPeaks started
+StripPeaks-[Notice] StripPeaks successful, Duration 0.87 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.55 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.29 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.69 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.55 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 17.51 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.56 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.89 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.58 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 21.31 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 37.41 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+LoadEventNexus-[Notice] LoadEventNexus started
+LogParser-[Warning] Cannot process ICPevent log. Period 1 assumed for all data.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadEventNexus-[Notice] LoadEventNexus successful, Duration 10.32 seconds
+NormaliseByCurrent-[Notice] NormaliseByCurrent started
+NormaliseByCurrent-[Notice] NormaliseByCurrent successful, Duration 1.75 seconds
+CompressEvents-[Notice] CompressEvents started
+CompressEvents-[Notice] CompressEvents successful, Duration 0.69 seconds
+ApplyDiffCal-[Notice] ApplyDiffCal started
+ApplyDiffCal-[Notice] ApplyDiffCal successful, Duration 5.13 seconds
+SumNeighbours-[Notice] SumNeighbours started
+SumNeighbours-[Notice] SumNeighbours successful, Duration 4.42 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 0.91 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.10 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.09 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.04 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.32 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.10 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.13 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.11 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.06 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.12 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.15 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.29 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.01 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.00 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07499 and 2.14435. Maximum value 2.07499 is located on (1392).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0058 and 2.07353. Maximum value 2.00913 is located on (1309).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15426 and 2.227. Maximum value 2.227 is located on (1371).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07656 and 2.14723. Maximum value 2.07656 is located on (1248).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00627 and 2.0752. Maximum value 2.00627 is located on (1190).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15214 and 2.22859. Maximum value 2.2247 is located on (1124).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00297 and 2.07675. Maximum value 2.00297 is located on (911).
+StripPeaks-[Warning] StripPeaks():  Peak Index = 15 @ X = 2.1879  Error: Peak fit with too narrow of peak fwhm = 0.00341605 bin size = 0.00369971 num bins in peak = 1.84666 <3
+StripPeaks-[Notice] StripPeaks successful, Duration 0.91 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.65 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.42 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.75 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.67 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.32 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.37 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14694 and 2.23666. Maximum value 2.14694 is located on (1015).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.84 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.57 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.44 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.70 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.57 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 3.20 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.71 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14449 and 2.24136. Maximum value 2.14449 is located on (1051).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.91 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.60 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.28 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.55 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.67 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.46 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.36 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.80 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.62 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.25 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.64 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.47 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.98 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 0.97 seconds
+StripPeaks-[Notice] StripPeaks started
+StripPeaks-[Notice] StripPeaks successful, Duration 0.71 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.58 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.03 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.56 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.61 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 18.22 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.51 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.15 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.04 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 21.72 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 37.30 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+LoadEventNexus-[Notice] LoadEventNexus started
+LogParser-[Warning] Cannot process ICPevent log. Period 1 assumed for all data.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadEventNexus-[Notice] LoadEventNexus successful, Duration 9.61 seconds
+NormaliseByCurrent-[Notice] NormaliseByCurrent started
+NormaliseByCurrent-[Notice] NormaliseByCurrent successful, Duration 1.34 seconds
+CompressEvents-[Notice] CompressEvents started
+CompressEvents-[Notice] CompressEvents successful, Duration 0.83 seconds
+ApplyDiffCal-[Notice] ApplyDiffCal started
+ApplyDiffCal-[Notice] ApplyDiffCal successful, Duration 5.73 seconds
+SumNeighbours-[Notice] SumNeighbours started
+SumNeighbours-[Notice] SumNeighbours successful, Duration 3.86 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 0.80 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.09 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.10 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.05 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.17 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.09 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.17 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.12 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.06 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.09 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.06 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.04 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.15 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.25 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.87 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 0.89 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07499 and 2.14435. Maximum value 2.07499 is located on (1392).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0058 and 2.07353. Maximum value 2.00913 is located on (1309).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15426 and 2.227. Maximum value 2.227 is located on (1371).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07656 and 2.14723. Maximum value 2.07656 is located on (1248).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00627 and 2.0752. Maximum value 2.00627 is located on (1190).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15214 and 2.22859. Maximum value 2.2247 is located on (1124).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00297 and 2.07675. Maximum value 2.00297 is located on (911).
+StripPeaks-[Warning] StripPeaks():  Peak Index = 15 @ X = 2.1879  Error: Peak fit with too narrow of peak fwhm = 0.00341605 bin size = 0.00369971 num bins in peak = 1.84666 <3
+StripPeaks-[Notice] StripPeaks successful, Duration 0.87 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.50 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.13 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.67 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.74 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.31 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.67 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14694 and 2.23666. Maximum value 2.14694 is located on (1015).
+StripPeaks-[Notice] StripPeaks successful, Duration 1.04 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.53 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.44 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.34 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.68 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.79 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.57 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14449 and 2.24136. Maximum value 2.14449 is located on (1051).
+StripPeaks-[Notice] StripPeaks successful, Duration 1.01 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.60 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.47 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.45 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.68 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.42 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.29 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.75 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.61 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.24 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.58 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.40 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.78 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.33 seconds
+StripPeaks-[Notice] StripPeaks started
+StripPeaks-[Notice] StripPeaks successful, Duration 0.87 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.57 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 0.94 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.50 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.57 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 17.63 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.27 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.18 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.75 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 23.43 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 37.57 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+LoadEventNexus-[Notice] LoadEventNexus started
+LogParser-[Warning] Cannot process ICPevent log. Period 1 assumed for all data.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadEventNexus-[Notice] LoadEventNexus successful, Duration 10.22 seconds
+NormaliseByCurrent-[Notice] NormaliseByCurrent started
+NormaliseByCurrent-[Notice] NormaliseByCurrent successful, Duration 1.61 seconds
+CompressEvents-[Notice] CompressEvents started
+CompressEvents-[Notice] CompressEvents successful, Duration 1.09 seconds
+ApplyDiffCal-[Notice] ApplyDiffCal started
+ApplyDiffCal-[Notice] ApplyDiffCal successful, Duration 5.09 seconds
+SumNeighbours-[Notice] SumNeighbours started
+SumNeighbours-[Notice] SumNeighbours successful, Duration 3.96 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 0.79 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.11 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.14 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.03 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.01 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.08 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.15 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.11 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.06 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.06 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.11 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.16 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.12 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 0.97 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07499 and 2.14435. Maximum value 2.07499 is located on (1392).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0058 and 2.07353. Maximum value 2.00913 is located on (1309).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15426 and 2.227. Maximum value 2.227 is located on (1371).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07656 and 2.14723. Maximum value 2.07656 is located on (1248).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00627 and 2.0752. Maximum value 2.00627 is located on (1190).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15214 and 2.22859. Maximum value 2.2247 is located on (1124).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00297 and 2.07675. Maximum value 2.00297 is located on (911).
+StripPeaks-[Warning] StripPeaks():  Peak Index = 15 @ X = 2.1879  Error: Peak fit with too narrow of peak fwhm = 0.00341605 bin size = 0.00369971 num bins in peak = 1.84666 <3
+StripPeaks-[Notice] StripPeaks successful, Duration 1.07 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.48 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.25 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.32 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.56 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.97 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.32 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14694 and 2.23666. Maximum value 2.14694 is located on (1015).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.83 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.47 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.33 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.48 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.47 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.38 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.58 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14449 and 2.24136. Maximum value 2.14449 is located on (1051).
+StripPeaks-[Notice] StripPeaks successful, Duration 1.05 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.62 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.57 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.74 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.79 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.68 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.49 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.70 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.46 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 0.97 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.29 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.37 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.77 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 0.95 seconds
+StripPeaks-[Notice] StripPeaks started
+StripPeaks-[Notice] StripPeaks successful, Duration 0.65 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.46 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 0.81 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.38 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.57 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.07 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.06 seconds
+GetIPTS-[Notice] GetIPTS started
+GetIPTS-[Notice] IPTS directory is: /SNS/SNAP/IPTS-24179/
+GetIPTS-[Notice] GetIPTS successful, Duration 0.05 seconds
+LoadNexus-[Notice] LoadNexus started
+ISISRunLogs-[Warning] Cannot find period log. Logs will be not be filtered by current period
+ISISRunLogs-[Warning] Cannot find periods log. Logs will be not be filtered by current period
+LoadNexus-[Notice] LoadNexus successful, Duration 17.08 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 3.09 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.49 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Warning] 2 detector IDs (out of 1179650) were not found in the instrument
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 2.55 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 1 minutes 17.64 seconds
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace started
+CreateGroupingWorkspace-[Notice] CreateGroupingWorkspace successful, Duration 38.93 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+LoadEventNexus-[Notice] LoadEventNexus started
+LogParser-[Warning] Cannot process ICPevent log. Period 1 assumed for all data.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadIDFFromNexus-[Notice] Instrument parameter file: /SNS/users/66j/.mantid/instrument/SNAP_Parameters.xml has been loaded.
+LoadIDFFromNexus-[Notice] 
+LoadIDFFromNexus-[Notice] No correction parameter file applies to the date for correction file.
+LoadEventNexus-[Notice] LoadEventNexus successful, Duration 11.63 seconds
+NormaliseByCurrent-[Notice] NormaliseByCurrent started
+NormaliseByCurrent-[Notice] NormaliseByCurrent successful, Duration 1.51 seconds
+CompressEvents-[Notice] CompressEvents started
+CompressEvents-[Notice] CompressEvents successful, Duration 1.40 seconds
+ApplyDiffCal-[Notice] ApplyDiffCal started
+ApplyDiffCal-[Notice] ApplyDiffCal successful, Duration 6.25 seconds
+SumNeighbours-[Notice] SumNeighbours started
+SumNeighbours-[Notice] SumNeighbours successful, Duration 4.52 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.06 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.18 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.13 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.04 seconds
+CloneWorkspace-[Notice] CloneWorkspace started
+CloneWorkspace-[Notice] CloneWorkspace successful, Duration 1.32 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.08 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.08 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.07 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.15 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.17 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.07 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.04 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.03 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.05 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.02 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.06 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.01 seconds
+MaskBins-[Notice] MaskBins started
+MaskBins-[Notice] MaskBins successful, Duration 0.00 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 0.06 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.11 seconds
+ConvertUnits-[Notice] ConvertUnits started
+ConvertUnits-[Notice] ConvertUnits successful, Duration 1.20 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.03 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.00 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07499 and 2.14435. Maximum value 2.07499 is located on (1392).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0058 and 2.07353. Maximum value 2.00913 is located on (1309).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15426 and 2.227. Maximum value 2.227 is located on (1371).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.07656 and 2.14723. Maximum value 2.07656 is located on (1248).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00627 and 2.0752. Maximum value 2.00627 is located on (1190).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15214 and 2.22859. Maximum value 2.2247 is located on (1124).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.00297 and 2.07675. Maximum value 2.00297 is located on (911).
+StripPeaks-[Warning] StripPeaks():  Peak Index = 15 @ X = 2.1879  Error: Peak fit with too narrow of peak fwhm = 0.00341605 bin size = 0.00369971 num bins in peak = 1.84666 <3
+StripPeaks-[Notice] StripPeaks successful, Duration 1.10 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.66 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.30 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.75 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.83 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.07 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.27 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14694 and 2.23666. Maximum value 2.14694 is located on (1015).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.89 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.65 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.59 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.58 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.65 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 3.79 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.76 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.14449 and 2.24136. Maximum value 2.14449 is located on (1051).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.94 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.55 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.43 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.49 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.60 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.14 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.10 seconds
+StripPeaks-[Notice] StripPeaks started
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.0711 and 2.14729. Maximum value 2.07484 is located on (1267).
+FindPeaks-[Warning] Maximum value on edge. Fit window is between 2.15117 and 2.2303. Maximum value 2.22627 is located on (1306).
+StripPeaks-[Notice] StripPeaks successful, Duration 0.71 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.50 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.25 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.66 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.67 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 2.28 seconds
+DiffractionFocussing-[Notice] DiffractionFocussing started
+DiffractionFocussing-[Notice] DiffractionFocussing successful, Duration 1.07 seconds
+StripPeaks-[Notice] StripPeaks started
+StripPeaks-[Notice] StripPeaks successful, Duration 0.66 seconds
+SmoothData-[Notice] SmoothData started
+SmoothData-[Notice] SmoothData successful, Duration 0.46 seconds
+Divide-[Notice] Divide started
+Divide-[Notice] Divide successful, Duration 1.02 seconds
+Rebin-[Notice] Rebin started
+Rebin-[Notice] Rebin successful, Duration 1.58 seconds
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged started
+CropWorkspaceRagged-[Notice] CropWorkspaceRagged successful, Duration 1.41 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+GroupWorkspaces-[Notice] GroupWorkspaces started
+GroupWorkspaces-[Notice] GroupWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+DeleteWorkspaces-[Notice] DeleteWorkspaces started
+DeleteWorkspaces-[Notice] DeleteWorkspaces successful, Duration 0.00 seconds
+     
+

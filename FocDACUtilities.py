@@ -9,8 +9,7 @@ def initPrm(run,case='before'):
   # This creates and returns a dictionary with all necessary run-specific parameters
   # All properties that can be determined soley from the run-number are populated, others
   # are just left empty.
-  # 
-  # It also looks up the state-specific parameters. for now, these are kept in separate dictionaries  
+  #  
 
   iptsPath = GetIPTS(RunNumber=run, instrument=iPrm.inst)
   rPrm = {
@@ -26,24 +25,73 @@ def initPrm(run,case='before'):
 def checkStateChange(run,sPrm):
   #checks if state of run is different from current state
 
-  runStateID,runStateDict = StateFromRunFunction(run)
+  runStateID,runStateDict,errorState = StateFromRunFunction(run)
   return runStateID == sPrm['stateID']
 
 def setupStateGrouping(sPrm):
 
   #Create grouping workspaces to be used for all runs
+  #
+  #19 Aug 2022 M. Guthrie CreateGroupingWorkspace turns out to be costly, so 
+  # have added check to not recreate existing workspaces
   gpString = 'TOF_rawVmB'
+
+  #Currently a messy hack to allow an arbitrary grouping of columns
+  #
+  #20220824 M. Guthrie. discovered that CreateGroupingWorkspace is doing something very strainge
+  #the definition of groups Gp01 and Gp02 below takes 4.5 minutes each to run
+  #after chatting with Andrei, he suggested to just manually create these grouping workspaces.
+  # a quick test of this shows it runs almost instantly.
+  # Here, I commented out the original code (a call to CreateGroupingWorkspace) and instead 
+  # call ManualCreateGroupingWorkspace which I also just created in this file. 
+
+  stdGroups=['All','Group','2_4Grouping','Column','bank']
   for focGrp in sPrm['focGroupLst']:
-    CreateGroupingWorkspace(InstrumentName=iPrm.inst,
-    GroupDetectorsBy=focGrp,
-    OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
+    if focGrp in stdGroups:
+      try: 
+        a = mtd[focGrp]
+      except:
+        CreateGroupingWorkspace(InstrumentName=iPrm.inst,
+        GroupDetectorsBy=focGrp,
+        OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
+    elif focGrp == 'Gp01':
+      try:
+        a = mtd[focGrp]
+      except: 
+        CreateGroupingWorkspace(InstrumentName=iPrm.inst,
+        ComponentName='East',
+        CustomGroupingString='0-589823',
+        OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
+    elif focGrp == 'Gp02':
+      try:
+        a = mtd[focGrp]
+      except:
+        CreateGroupingWorkspace(InstrumentName=iPrm.inst,
+        CustomGroupingString='786432-1179647',
+        ComponentName='West',
+        OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
     gpString = gpString + ',' + f'{iPrm.inst}{focGrp}Gp'
 
   GroupWorkspaces(InputWorkspaces=gpString,
     OutputWorkspace='CommonRed'
     )
 
-  print('State groups initialised')
+  #print('State groups initialised')
+def ManualCreateGroupingWorkspace(FirstPixelIDInGroup=0,
+  LastPixelIDInGroup=10,Inst='SNAP',GpWSName=''):
+
+  #Create empty instrument
+
+  LoadEmptyInstrument(InstrumentName=Inst,
+  OutputWorkspace=GpWSName)
+
+  #for SNAP need to load detector positions for ShowInstrument to work (might not be necessary here)
+
+  AddSampleLog(Workspace=GpWSName,LogName='det_arc1',LogText=arc1,LogType='Number Series')
+  AddSampleLog(Workspace=GpWSName,LogName='det_lin1',LogText=lin1,LogType='Number Series')
+  AddSampleLog(Workspace=GpWSName,LogName='det_arc2',LogText=arc2,LogType='Number Series')
+  AddSampleLog(Workspace=GpWSName,LogName='det_lin2',LogText=lin2,LogType='Number Series')
+  LoadInstrument(Workspace=GpWSName,MonitorList='-1,1179648', RewriteSpectraMap='False',InstrumentName='SNAP')
 
 
 def getStatePrm(run,case='before'):
@@ -156,30 +204,39 @@ def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
   #CU a flag if True, use convert units instead of applying a calibration
   
   #output: single mantid workspace in TOF
+  #
+  #19 Aug 2022 M. Guthrie added check if preProc workspace already exists
+  #and to not reload if not necessary.
+
   runIPTS= rPrm['runIPTS'] 
+
   
-  LoadEventNexus(Filename=f'{runIPTS}{iPrm.nexusDirLoc}{iPrm.nexusFilePre}{Run}{iPrm.nexusFileExt}',
-  OutputWorkspace=f'TOF_{Run}',
-  FilterByTofMin=sPrm['tofMin'], 
-  FilterByTofMax=sPrm['tofMax'], Precount='1',
-  LoadMonitors=True)
-  
-  NormaliseByCurrent(InputWorkspace=f'TOF_{Run}',
-  OutputWorkspace=f'TOF_{Run}')
+  try:
+    a = mtd[f'TOF_{Run}']
+  except:
 
-  CompressEvents(InputWorkspace=f'TOF_{Run}',
-  OutputWorkspace=f'TOF_{Run}',
-  WallClockTolerance=sPrm['wallClockTol'])
+    LoadEventNexus(Filename=f'{runIPTS}{iPrm.nexusDirLoc}{iPrm.nexusFilePre}{Run}{iPrm.nexusFileExt}',
+    OutputWorkspace=f'TOF_{Run}',
+    FilterByTofMin=sPrm['tofMin'], 
+    FilterByTofMax=sPrm['tofMax'], Precount='1',
+    LoadMonitors=True)
+    
+    NormaliseByCurrent(InputWorkspace=f'TOF_{Run}',
+    OutputWorkspace=f'TOF_{Run}')
 
-  if not CU:
-    ApplyDiffCal(InstrumentWorkspace=f'TOF_{Run}',
-    CalibrationFile=iPrm.stateLoc+sPrm['stateID']+'/'+sPrm['calFileName'])
+    CompressEvents(InputWorkspace=f'TOF_{Run}',
+    OutputWorkspace=f'TOF_{Run}',
+    WallClockTolerance=sPrm['wallClockTol'])
 
-  SumNeighbours(InputWorkspace=f'TOF_{Run}',
-  OutputWorkspace=f'TOF_{Run}',
-  SumX=sPrm['superPixEdge'],
-  SumY=sPrm['superPixEdge']
-  )
+    if not CU:
+      ApplyDiffCal(InstrumentWorkspace=f'TOF_{Run}',
+      CalibrationFile=iPrm.stateLoc+sPrm['stateID']+'/'+sPrm['calFileName'])
+
+    SumNeighbours(InputWorkspace=f'TOF_{Run}',
+    OutputWorkspace=f'TOF_{Run}',
+    SumX=sPrm['superPixEdge'],
+    SumY=sPrm['superPixEdge']
+    )
   return f'TOF_{Run}'
 
 ####################################################################################
@@ -192,50 +249,107 @@ def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
 
 def makeRawVCorr(VRun,VBRun,case):
 
-  sPrm = getStatePrm(VRun,case)
+  sPrm, errorState = getStatePrm(VRun,case)
   rPrm = initPrm(VRun,case) 
   Vws = preProcSNAP(VRun,rPrm,sPrm,False)
 
   #by definition, state must be the same for V and VB, so don't update
   #TODO: create a script that returns true if two input runs
   #are in the same state
-  #
   #TODO: make able to handle VRun and VBRun being lists
 
   rPrm = initPrm(VBRun,case) 
   VBws = preProcSNAP(VBRun,rPrm,sPrm, False)
 
-  #I'm aware that an attenuation correction should be done here, but not yet implemented.
   Minus(LHSWorkspace=Vws,
   RHSWorkspace=VBws,
   OutputWorkspace='TOF_rawVmB')
+
+  #TODO: check different options for abs correction
+  #Check out: https://github.com/neutrons/mantid_total_scattering/blob/next/total_scattering/reduction/total_scattering_reduction.py#:~:text=%23%20Get%20vanadium%20corrections,%2C%20van_mass_density)
+  #TODO: check V dimensions and create a way to store these
+
+  ConvertUnits(InputWorkspace='TOF_rawVmB',
+  OutputWorkspace='Lam_rawVmB',
+  Target='Wavelength')
+
+  #with these settings takes about 60s...
+  CylinderAbsorption(InputWorkspace='Lam_rawVmB', 
+  OutputWorkspace='Vabs', 
+  AttenuationXSection=5.08, 
+  ScatteringXSection=5.10, 
+  SampleNumberDensity=0.07188, 
+  CylinderSampleHeight=0.3, 
+  CylinderSampleRadius=0.159, 
+  NumberOfSlices=10, 
+  NumberOfAnnuli=10)
+
+  Divide(LHSWorkspace='Lam_rawVmB',
+  RHSWorkspace='Vabs',
+  OutputWorkspace='Lam_rawVmB')
+
+  ConvertUnits(InputWorkspace='Lam_rawVmB',
+  OutputWorkspace='TOF_rawVmB',
+  Target='TOF')  
 
   Rebin(InputWorkspace='TOF_rawVmB',
   OutputWorkspace='TOF_rawVmB',
   Params=[sPrm['tofMin'],sPrm['tofBin'],sPrm['tofMax']],
   PreserveEvents=False)
-
-  #Attenuation correction can follow: https://github.com/neutrons/mantid_total_scattering/blob/next/total_scattering/reduction/total_scattering_reduction.py#:~:text=%23%20Get%20vanadium%20corrections,%2C%20van_mass_density)
-
+  
   #Output resultant raw correction as a nexus file to the calibration directory
 
   rawVCorrFilePre = 'RVMB'
   rawVCorrFileExt = '.nxs'
   rawVCorrPath = iPrm.stateLoc + sPrm['stateID'] + '/' + rawVCorrFilePre + str(VRun) + rawVCorrFileExt
 
-
   SaveNexus(InputWorkspace='TOF_rawVmB',
   Filename=rawVCorrPath,
-  Title = 'Raw vanadium minus background, rebinned, histogrammed')
+  Title = 'Raw vanadium minus background, absorb corr,rebinned, histogrammed')
 
   print(f'wrote file: {rawVCorrPath}')
   #clean up
+  #if requested, enter inspection mode
+  inspect=True 
+  if inspect:
+
+    setupStateGrouping(sPrm)
+  
+    ConvertUnits(InputWorkspace='TOF_rawVmB',
+    OutputWorkspace=f'DSpac_rawVmB',
+    Target='dSpacing',
+    EMode='Elastic',
+    ConvertFromPointData=True)
+
+    #Focus the data and vanadium using DiffractionFocusing for each of requested groups
+    
+    for gpNo, focGrp in enumerate(sPrm['focGroupLst']):
+
+      DiffractionFocussing(InputWorkspace=f'DSpac_rawVmB',
+      OutputWorkspace=f'DSpac_rawVmB_{focGrp}',
+      GroupingWorkspace=f'SNAP{focGrp}Gp')
+
+      #make vanadium correction (complicated by mystery peaks)
+      #(n.b. also no attenuation correction on V, but none on data either, this isn't quantatative)
+      StripPeaks(InputWorkspace=f'DSpac_rawVmB_{focGrp}',
+      OutputWorkspace=f'DSpac_rawVmB_{focGrp}_strp',
+      FWHM=2, 
+      #PeakPositions='1.22,2.04,2.11,2.19', 
+      PeakPositions='1.2356,1.5133,2.1401',
+      BackgroundType='Quadratic')
+      
+      SmoothData(InputWorkspace=f'DSpac_rawVmB_{focGrp}_strp', 
+      OutputWorkspace=f'DSpac_VCorr_{focGrp}',
+      NPoints='40')
+
 
   DeleteWorkspace(Vws)
   DeleteWorkspace(Vws+'_monitors')
   DeleteWorkspace(VBws)
   DeleteWorkspace(VBws+'_monitors')
-  #DeleteWorkspace('TOF_rawVmB')
+  DeleteWorkspace('TOF_rawVmB')
+  DeleteWorkspace('Vabs')
+  DeleteWorkspace('Lam_rawVmB')
   return 
 
 def SNAPMsk(runWS,rPrm,sPrm):
@@ -243,6 +357,12 @@ def SNAPMsk(runWS,rPrm,sPrm):
   #1) msknm = '' - no masking
   #2) msknm = afile.xml - "traditional" mask, stored in an xml file, exludes entire pixels
   #3) msknm = afile.json - a file containing information on individual bin masking
+  #
+  #20221608 M. Guthrie: added information recording units that bin mask was created using
+  #input runWS *has to match this* for things to work. Currently reduction workflow is sending runWS as
+  #TOF and expects returned ws to also be in TOF. So, if units!= TOF then need a couple
+  #of ConvertUnits
+
 
   msknm = rPrm['maskFileName']
   if len(msknm)==0:
@@ -264,6 +384,7 @@ def SNAPMsk(runWS,rPrm,sPrm):
       mask_xmins = mskBinsDict['xmins']
       mask_xmaxs = mskBinsDict['xmaxs']
       mask_spectraLsts = mskBinsDict['spectraLsts']
+      mask_units = mskBinsDict['units']
       nmask_slice = len(mask_xmins)
     #print(f'got MaskBin dictionary with {nmask_slice} slices')
     mskRunWS=f'{runWS}_binMsk'
@@ -285,6 +406,18 @@ def SNAPMsk(runWS,rPrm,sPrm):
   if mskMode == 3:
     CloneWorkspace(InputWorkspace=runWS,
     OutputWorkspace=mskRunWS)
+
+    #check units, change if necessary
+    ws = mtd[mskRunWS]
+    input_units=ws.getAxis(0).getUnit().caption()
+    changedUnits=False 
+
+    if mask_units != input_units:
+      ConvertUnits(InputWorkspace=mskRunWS,
+      OutputWorkspace=mskRunWS,
+      Target=mask_units)
+      changedUnits=True
+
     for kk in range(nmask_slice):
         MaskBins(InputWorkspace=mskRunWS,
                 InputWorkspaceIndexType='WorkspaceIndex',
@@ -292,6 +425,14 @@ def SNAPMsk(runWS,rPrm,sPrm):
                 OutputWorkspace=mskRunWS,
                 XMin=mask_xmins[kk],
                 XMax=mask_xmaxs[kk])
+
+    if changedUnits:
+      if input_units=='Time-of-flight':
+        input_units='TOF' #well, that one is annoying...
+      ConvertUnits(InputWorkspace=mskRunWS,
+      OutputWorkspace=mskRunWS,
+      Target=input_units)
+      changedUnits=True
   #DeleteWorkspace(f'tof{Run}')  
   return mskRunWS,wsTag
 
@@ -669,3 +810,161 @@ def getConfigDict(FName):
         return dictIn
     else:
         print('file not found')
+
+#This was originally a script. Now converted to a function that can be called from a
+#GUI
+
+def SNAPRed(inputRunString,inputMaskString,redSettings):
+
+  # from mantid.simpleapi import *
+  #import FocDACUtilities as DAC
+  import SNAP_InstPrm as iPrm 
+  import importlib
+  #importlib.reload(DAC)
+  importlib.reload(iPrm)
+
+  #TODO need to keep a log of run-specific parameters so, created a 
+  #dictionary of dictionaries, which is now returned
+
+  #parameters:
+  # inputRunString - a comma separated list of runs (TODO: enable interpretation of hyphens
+  # to denote range of values)
+  # inputMaskString - a string with the name of a masking file. TODO: enable possiblity
+  # of different masks for different runs in list
+  # redSettings - a dictionary to allow the control of some reduction options 
+
+
+  AllRuns = [int(x) for x in inputRunString.split(',')]
+ 
+  maskFileName=[inputMaskString]
+  cleanUp = redSettings['cleanUp'] 
+  GSASOut = redSettings['GSASOut']
+  CU = redSettings['ConvertUnits'] #switch to convert units instead of calibration  
+
+
+  ########################################
+  # MAIN Workflow
+  #######################################
+  
+  #maskFileName='snap49870_8x8_binMskInfo.json'
+  calibState = redSettings['calibState']#'before' #describes whether calibration was conducted before or after sample runs
+
+  for runidx,run in enumerate(AllRuns):
+
+    #initialise reduction parameters happens for every run
+    rPrm = initPrm(run,calibState)
+    if len(maskFileName)==1:
+      rPrm['maskFileName']=maskFileName[0]
+    else:
+      rPrm['maskFileName']=maskFileName[runidx]
+      
+
+    #if state hasn't been initialised, initialise state reduction parameters and load raw VCorr
+    if runidx == 0:
+
+      sPrm,errorState = getStatePrm(run,calibState)
+
+      LoadNexus(Filename=iPrm.stateLoc + sPrm['stateID'] + '/' + sPrm['rawVCorrFileName'],
+      OutputWorkspace='TOF_rawVmB')
+
+      setupStateGrouping(sPrm)
+
+    #also reinitialise if state changes 
+    if not checkStateChange(run,sPrm):
+      print('State changed, initialising new state')
+      sPrm,errorState = getStatePrm(run,calibState)
+
+      LoadNexus(Filename=iPrm.stateLoc + sPrm['stateID'] + '/' + sPrm['rawVCorrFileName'],
+      OutputWorkspace='TOF_rawVmB')
+
+      setupStateGrouping(sPrm)
+
+    TOF_runWS = preProcSNAP(run,rPrm,sPrm,CU)  
+    gpString = TOF_runWS + '_monitors' #a list of all ws to group
+    
+    #masking
+    
+    TOF_runWS_msk,mskTag = SNAPMsk(TOF_runWS,rPrm,sPrm) #mask run workspace
+    TOF_rawVmB_msk,mskTag = SNAPMsk('TOF_rawVmB',rPrm,sPrm)
+
+    #convert to d-spacing
+
+    DSpac_runWS_msk = f'DSpac_{run}_{mskTag}'
+    ConvertUnits(InputWorkspace=TOF_runWS_msk,
+    OutputWorkspace=DSpac_runWS_msk,
+    Target='dSpacing',
+    EMode='Elastic',
+    ConvertFromPointData=True)
+
+    DSpac_VmB_msk = f'DSpac_rawVmB_{mskTag}'
+    ConvertUnits(InputWorkspace=TOF_rawVmB_msk,
+    OutputWorkspace=f'DSpac_rawVmB_{mskTag}',
+    Target='dSpacing',
+    EMode='Elastic',
+    ConvertFromPointData=True)
+
+    #Focus the data and vanadium using DiffractionFocusing for each of requested groups
+    
+    for gpNo, focGrp in enumerate(sPrm['focGroupLst']):
+      DiffractionFocussing(InputWorkspace=DSpac_runWS_msk,
+      OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}',
+      GroupingWorkspace=f'SNAP{focGrp}Gp')
+
+      DiffractionFocussing(InputWorkspace=f'DSpac_rawVmB_{mskTag}',
+      OutputWorkspace=f'DSpac_rawVmB_{mskTag}_{focGrp}',
+      GroupingWorkspace=f'SNAP{focGrp}Gp')
+
+      #make vanadium correction (complicated by mystery peaks)
+      #(n.b. also no attenuation correction on V, but none on data either, this isn't quantatative)
+      StripPeaks(InputWorkspace=f'DSpac_rawVmB_{mskTag}_{focGrp}',
+      OutputWorkspace=f'DSpac_rawVmB_{mskTag}_{focGrp}_strp',
+      FWHM=2, 
+      PeakPositions='1.22,2.04,2.11,2.19', 
+      #PeakPositions='1.2356,1.5133,2.1401',
+      BackgroundType='Quadratic')
+      
+      SmoothData(InputWorkspace=f'DSpac_rawVmB_{mskTag}_{focGrp}_strp', 
+      OutputWorkspace=f'DSpac_VCorr_{mskTag}_{focGrp}',
+      NPoints='40')
+
+  #Apply vanadium correction, and trim to usable limits
+
+      Divide(LHSWorkspace=f'{DSpac_runWS_msk}_{focGrp}', 
+      RHSWorkspace=f'DSpac_VCorr_{mskTag}_{focGrp}', 
+      OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_V')
+
+      Rebin(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_V', #skip V correction.
+      #Rebin(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}', 
+      OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_VR',
+      Params='0.5,-0.001,4.5', PreserveEvents=False)
+
+      CropWorkspaceRagged(InputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_VR', 
+      OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}_VRT', 
+      XMin=sPrm['focGroupDMin'][gpNo], 
+      XMax=sPrm['focGroupDMax'][gpNo])
+
+      gpString = gpString+ f',{DSpac_runWS_msk}_{focGrp}_VRT'
+
+      if cleanUp:
+          DeleteWorkspaces(WorkspaceList=f'DSpac_rawVmB_{mskTag}_{focGrp},'\
+          f'DSpac_rawVmB_{mskTag}_{focGrp}_strp,'
+          f'DSpac_VCorr_{mskTag}_{focGrp},'
+          f'{DSpac_runWS_msk}_{focGrp},'
+          f'{DSpac_runWS_msk}_{focGrp}_V,'
+          f'{DSpac_runWS_msk}_{focGrp}_VR')    
+      
+    GroupWorkspaces(InputWorkspaces=gpString,
+        OutputWorkspace=f'SNAP{run}_Red')
+
+    if cleanUp:      
+      DeleteWorkspaces(WorkspaceList=TOF_runWS_msk + \
+      ','+TOF_runWS+\
+      f',DSpac_rawVmB_{mskTag},'\
+      f'DSpac_{run}_{mskTag}'    
+      ) 
+    
+
+  if cleanUp:
+    DeleteWorkspaces(WorkspaceList=TOF_rawVmB_msk)
+
+

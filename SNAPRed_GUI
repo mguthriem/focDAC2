@@ -1,0 +1,18 @@
+from mantid.simpleapi import *
+from mantid import config
+config.setLogLevel(0, quiet=True)
+import time
+
+import FocDACUtilities as DAC
+import SNAP_InstPrm as iPrm 
+import importlib
+importlib.reload(DAC)
+
+importlib.reload(iPrm)
+import panel as pn
+#from panel.template import DarkTheme
+
+pn.extension(template='material')
+pn.widgets.Select.sizing_mode = 'stretch_both'
+
+import pandas as pd
