@@ -1,15 +1,17 @@
 from mantid.simpleapi import *
+from mantid import logger
 import json
 import numpy as np
 import os
 #import SNAPStateParMgr as prm
 import SNAP_InstPrm as iPrm
 
-def initPrm(run,case='before'):
+def initPrm(run,case='before',liteMode=True):
   # This creates and returns a dictionary with all necessary run-specific parameters
   # All properties that can be determined soley from the run-number are populated, others
   # are just left empty.
-  #  
+  #
+  # 20220908 M. Guthrie added 'lite' setting  
 
   iptsPath = GetIPTS(RunNumber=run, instrument=iPrm.inst)
   rPrm = {
@@ -17,7 +19,9 @@ def initPrm(run,case='before'):
     'maskFileName':'',
     'maskFileLoc':iptsPath + iPrm.sharedDirLoc,
     'runIPTS': iptsPath,
-    'gsasFileLoc':iptsPath + iPrm.reducedDirLoc
+    'gsasFileLoc':iptsPath + iPrm.reducedDirLoc,
+    'liteMode':liteMode,
+    'calibState':case
   }
 
   return rPrm
@@ -28,7 +32,7 @@ def checkStateChange(run,sPrm):
   runStateID,runStateDict,errorState = StateFromRunFunction(run)
   return runStateID == sPrm['stateID']
 
-def setupStateGrouping(sPrm):
+def setupStateGrouping(rPrm,sPrm):
 
   #Create grouping workspaces to be used for all runs
   #
@@ -38,12 +42,18 @@ def setupStateGrouping(sPrm):
 
   #Currently a messy hack to allow an arbitrary grouping of columns
   #
-  #20220824 M. Guthrie. discovered that CreateGroupingWorkspace is doing something very strainge
+  #20220824 M. Guthrie. discovered that CreateGroupingWorkspace is doing something very strange
   #the definition of groups Gp01 and Gp02 below takes 4.5 minutes each to run
   #after chatting with Andrei, he suggested to just manually create these grouping workspaces.
   # a quick test of this shows it runs almost instantly.
   # Here, I commented out the original code (a call to CreateGroupingWorkspace) and instead 
   # call ManualCreateGroupingWorkspace which I also just created in this file. 
+
+  lite = rPrm['liteMode']
+
+  if lite:
+    LoadEventNexus(FileName='/SNS/SNAP/IPTS-24179/shared/lite/SNAP_48708.lite.nxs.h5',
+    OutputWorkspace='lite')
 
   stdGroups=['All','Group','2_4Grouping','Column','bank']
   for focGrp in sPrm['focGroupLst']:
@@ -51,9 +61,14 @@ def setupStateGrouping(sPrm):
       try: 
         a = mtd[focGrp]
       except:
-        CreateGroupingWorkspace(InstrumentName=iPrm.inst,
-        GroupDetectorsBy=focGrp,
-        OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
+        if lite:
+          CreateGroupingWorkspace(InputWorkspace='lite',
+          GroupDetectorsBy=focGrp,
+          OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
+        else:
+          CreateGroupingWorkspace(InstrumentName=iPrm.inst,
+          GroupDetectorsBy=focGrp,
+          OutputWorkspace=f'{iPrm.inst}{focGrp}Gp')
     elif focGrp == 'Gp01':
       try:
         a = mtd[focGrp]
@@ -94,7 +109,7 @@ def ManualCreateGroupingWorkspace(FirstPixelIDInGroup=0,
   LoadInstrument(Workspace=GpWSName,MonitorList='-1,1179648', RewriteSpectraMap='False',InstrumentName='SNAP')
 
 
-def getStatePrm(run,case='before'):
+def getStatePrm(run,rPrm):
   #purpose: 
   # 1) shall determine state-ID the basis of run number. 
   # 2) shall determine corresponding state folder
@@ -114,6 +129,9 @@ def getStatePrm(run,case='before'):
   import yaml #
   import numpy as np
 
+  lite = rPrm['liteMode']
+  case = rPrm['calibState']
+
   errorState = dict()
   errorState['value']=0
   errorState['function']='getStatePrm'
@@ -124,7 +142,11 @@ def getStatePrm(run,case='before'):
 
 
   calibPath = iPrm.stateLoc + stateID + '/'
-  calibSearchPattern=f'{calibPath}{iPrm.calibFilePre}*.{iPrm.calibFileExt}'
+  if lite:
+    calibSearchPattern=f'{calibPath}{iPrm.calibFilePre}*.lite.{iPrm.calibFileExt}'
+  else:
+    calibSearchPattern=f'{calibPath}{iPrm.calibFilePre}*.{iPrm.calibFileExt}'
+  logger.error(calibSearchPattern)  
   calibFileList = findMatchingFileList(calibSearchPattern)
   if len(calibFileList)==0:
     errorState['value']=1
@@ -175,6 +197,7 @@ def getStatePrm(run,case='before'):
   #print(f'successfully found calibration file: \n {calibFileList[calIndx]}')
   
   #Now read this to populate the state dictionary
+  logger.error(calibFileList[calIndx])
   with open(calibFileList[calIndx], "r") as json_file:
     dictIn = json.load(json_file)
   #print('got config dictionary')
@@ -195,7 +218,10 @@ def findMatchingFileList(pattern):
 #   IPTSLoc= GetIPTS(RunNumber=Run,Instrument=iPrm.inst)
 #   return IPTSLoc
 
-def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
+def preProcSNAP(Run,rPrm,sPrm,CU): 
+  
+  import os.path
+  #initial steps of reduction
   #preliminary normalisation (to proton charge)
   #calibration, compression of events and summing neighbours to 8x8 superpixels 
   #input: Run: a single run number as integer
@@ -208,18 +234,41 @@ def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
   #19 Aug 2022 M. Guthrie added check if preProc workspace already exists
   #and to not reload if not necessary.
 
-  runIPTS= rPrm['runIPTS'] 
+  # 6 sept 2022 M. Guthrie added variable `lite` if true then will trigger a workflow
+  # where the original nexus file processed by `nexusLite` to create local file
+  # where events have been re-labelled according to an 8x8 pixel scheme.
+  # subsequently this "lite" file is read instead of the original. The lite file
+  # has exactly the same size as the original, so this could rapidly lead to problems
+  # with disk space, so this is just a temporary measure...
 
+  runIPTS= rPrm['runIPTS']
+  lite = rPrm['liteMode'] 
   
   try:
     a = mtd[f'TOF_{Run}']
   except:
 
-    LoadEventNexus(Filename=f'{runIPTS}{iPrm.nexusDirLoc}{iPrm.nexusFilePre}{Run}{iPrm.nexusFileExt}',
-    OutputWorkspace=f'TOF_{Run}',
-    FilterByTofMin=sPrm['tofMin'], 
-    FilterByTofMax=sPrm['tofMax'], Precount='1',
-    LoadMonitors=True)
+    if lite:
+      #First need to create local directory if it doesn't exist
+      liteDir = f'{runIPTS}shared/lite/'
+      if not os.path.exists(liteDir):
+        os.makedirs(liteDir)
+      inF = f'{runIPTS}{iPrm.nexusDirLoc}{iPrm.nexusFilePre}{Run}{iPrm.nexusFileExt}'
+      outF = f'{runIPTS}shared/lite/{iPrm.nexusFilePre}{Run}.lite{iPrm.nexusFileExt}'
+      makeLite(inFileName=inF,
+      outFileName=outF)
+      LoadEventNexus(f'{runIPTS}shared/lite/{iPrm.nexusFilePre}{Run}.lite{iPrm.nexusFileExt}',
+      OutputWorkspace=f'TOF_{Run}',
+      FilterByTofMin=sPrm['tofMin'], 
+      FilterByTofMax=sPrm['tofMax'], Precount='1',
+      LoadMonitors=True,
+      LoadNexusInstrumentXML=True)
+    else:
+      LoadEventNexus(Filename=f'{runIPTS}{iPrm.nexusDirLoc}{iPrm.nexusFilePre}{Run}{iPrm.nexusFileExt}',
+      OutputWorkspace=f'TOF_{Run}',
+      FilterByTofMin=sPrm['tofMin'], 
+      FilterByTofMax=sPrm['tofMax'], Precount='1',
+      LoadMonitors=True)
     
     NormaliseByCurrent(InputWorkspace=f'TOF_{Run}',
     OutputWorkspace=f'TOF_{Run}')
@@ -232,11 +281,12 @@ def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
       ApplyDiffCal(InstrumentWorkspace=f'TOF_{Run}',
       CalibrationFile=iPrm.stateLoc+sPrm['stateID']+'/'+sPrm['calFileName'])
 
-    SumNeighbours(InputWorkspace=f'TOF_{Run}',
-    OutputWorkspace=f'TOF_{Run}',
-    SumX=sPrm['superPixEdge'],
-    SumY=sPrm['superPixEdge']
-    )
+    if not lite:
+      SumNeighbours(InputWorkspace=f'TOF_{Run}',
+      OutputWorkspace=f'TOF_{Run}',
+      SumX=sPrm['superPixEdge'],
+      SumY=sPrm['superPixEdge']
+      )
   return f'TOF_{Run}'
 
 ####################################################################################
@@ -246,11 +296,21 @@ def preProcSNAP(Run,rPrm,sPrm,CU): #initial steps of reduction
 #The goal here is to create and store a nexus file that contains V minus B in as a function 
 #of wavelength, with full* instrument defintion (*subject to compression as defined in 
 #loadandprepSNAP) and rebinned to remove events
+#
+# M. Guthrie 7/09/2022 modified to accept input arguments as dictionary and to 
+# Store a copy of this dictionary in calibration directory as a record of how
+# Vanadium correction was made.
 
-def makeRawVCorr(VRun,VBRun,case):
+def makeRawVCorr(VPrm):
 
-  sPrm, errorState = getStatePrm(VRun,case)
-  rPrm = initPrm(VRun,case) 
+  lite = VPrm['liteMode']
+  VRun = VPrm['VRun']
+  VBRun = VPrm['VBRun']
+  case = VPrm['calibState']
+
+  sPrm, errorState = getStatePrm(VRun,vPrm)
+  rPrm = initPrm(VRun,case,lite)
+
   Vws = preProcSNAP(VRun,rPrm,sPrm,False)
 
   #by definition, state must be the same for V and VB, so don't update
@@ -258,7 +318,7 @@ def makeRawVCorr(VRun,VBRun,case):
   #are in the same state
   #TODO: make able to handle VRun and VBRun being lists
 
-  rPrm = initPrm(VBRun,case) 
+  rPrm = initPrm(VBRun,case,lite) 
   VBws = preProcSNAP(VBRun,rPrm,sPrm, False)
 
   Minus(LHSWorkspace=Vws,
@@ -279,10 +339,10 @@ def makeRawVCorr(VRun,VBRun,case):
   AttenuationXSection=5.08, 
   ScatteringXSection=5.10, 
   SampleNumberDensity=0.07188, 
-  CylinderSampleHeight=0.3, 
-  CylinderSampleRadius=0.159, 
-  NumberOfSlices=10, 
-  NumberOfAnnuli=10)
+  CylinderSampleHeight=VPrm['VHeight'], 
+  CylinderSampleRadius=VPrm['VRad'], 
+  NumberOfSlices=VPrm['NSlice'], 
+  NumberOfAnnuli=VPrm['NAnnul'])
 
   Divide(LHSWorkspace='Lam_rawVmB',
   RHSWorkspace='Vabs',
@@ -300,7 +360,10 @@ def makeRawVCorr(VRun,VBRun,case):
   #Output resultant raw correction as a nexus file to the calibration directory
 
   rawVCorrFilePre = 'RVMB'
-  rawVCorrFileExt = '.nxs'
+  if lite:
+    rawVCorrFileExt = '.lite.nxs'
+  else:
+    rawVCorrFileExt = '.nxs'
   rawVCorrPath = iPrm.stateLoc + sPrm['stateID'] + '/' + rawVCorrFilePre + str(VRun) + rawVCorrFileExt
 
   SaveNexus(InputWorkspace='TOF_rawVmB',
@@ -313,7 +376,7 @@ def makeRawVCorr(VRun,VBRun,case):
   inspect=True 
   if inspect:
 
-    setupStateGrouping(sPrm)
+    setupStateGrouping(vPrm,sPrm)
   
     ConvertUnits(InputWorkspace='TOF_rawVmB',
     OutputWorkspace=f'DSpac_rawVmB',
@@ -335,12 +398,12 @@ def makeRawVCorr(VRun,VBRun,case):
       OutputWorkspace=f'DSpac_rawVmB_{focGrp}_strp',
       FWHM=2, 
       #PeakPositions='1.22,2.04,2.11,2.19', 
-      PeakPositions='1.2356,1.5133,2.1401',
+      PeakPositions=VPrm['VPeaks'],
       BackgroundType='Quadratic')
       
       SmoothData(InputWorkspace=f'DSpac_rawVmB_{focGrp}_strp', 
       OutputWorkspace=f'DSpac_VCorr_{focGrp}',
-      NPoints='40')
+      NPoints=VPrm['VSmoothPoints'])
 
 
   DeleteWorkspace(Vws)
@@ -373,12 +436,14 @@ def SNAPMsk(runWS,rPrm,sPrm):
   if os.path.exists(mskFname):
     pass
   else:
-    print(f'ERROR cant open: {mskFname}')
+    logger.error(f'mask file not found here: {mskFname}')
+    return
   ext = msknm.split('.')[1]
   
   #read mask from file
   if ext == 'json':
     mskMode=3
+    logger.error('Reading Bin Mask file')
     with open(mskFname, "r") as json_file:
       mskBinsDict = json.load(json_file)
       mask_xmins = mskBinsDict['xmins']
@@ -419,6 +484,10 @@ def SNAPMsk(runWS,rPrm,sPrm):
       changedUnits=True
 
     for kk in range(nmask_slice):
+        logger.error(f'There are {nmask_slice} mask slices, masking bins for slice: {kk}')
+        logger.error(f'minimum x: {mask_xmins[kk]} maximum x: {mask_xmaxs[kk]}')
+        allSlice = mask_spectraLsts[kk].split(',')
+        logger.error(f'there are {len(allSlice)} spectra in this slice')
         MaskBins(InputWorkspace=mskRunWS,
                 InputWorkspaceIndexType='WorkspaceIndex',
                 InputWorkspaceIndexSet=mask_spectraLsts[kk],
@@ -822,6 +891,7 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
   import importlib
   #importlib.reload(DAC)
   importlib.reload(iPrm)
+  import yaml
 
   #TODO need to keep a log of run-specific parameters so, created a 
   #dictionary of dictionaries, which is now returned
@@ -840,7 +910,7 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
   cleanUp = redSettings['cleanUp'] 
   GSASOut = redSettings['GSASOut']
   CU = redSettings['ConvertUnits'] #switch to convert units instead of calibration  
-
+  lite = redSettings['liteMode']
 
   ########################################
   # MAIN Workflow
@@ -852,7 +922,7 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
   for runidx,run in enumerate(AllRuns):
 
     #initialise reduction parameters happens for every run
-    rPrm = initPrm(run,calibState)
+    rPrm = initPrm(run,calibState,lite)
     if len(maskFileName)==1:
       rPrm['maskFileName']=maskFileName[0]
     else:
@@ -861,13 +931,14 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
 
     #if state hasn't been initialised, initialise state reduction parameters and load raw VCorr
     if runidx == 0:
-
-      sPrm,errorState = getStatePrm(run,calibState)
-
+      logger.error(f'getting state parameters for run: {run}')
+      sPrm,errorState = getStatePrm(run,rPrm)
+      rawvc = sPrm['rawVCorrFileName']
+      logger.error(f'Loading raw VCorr: {rawvc}')
       LoadNexus(Filename=iPrm.stateLoc + sPrm['stateID'] + '/' + sPrm['rawVCorrFileName'],
       OutputWorkspace='TOF_rawVmB')
 
-      setupStateGrouping(sPrm)
+      setupStateGrouping(rPrm,sPrm)
 
     #also reinitialise if state changes 
     if not checkStateChange(run,sPrm):
@@ -878,17 +949,26 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
       OutputWorkspace='TOF_rawVmB')
 
       setupStateGrouping(sPrm)
-
+    logger.error(f'pre processing run: {run}')
     TOF_runWS = preProcSNAP(run,rPrm,sPrm,CU)  
     gpString = TOF_runWS + '_monitors' #a list of all ws to group
     
+    #write reduction parameters to file for posterity
+
+    # fullParPath='RedPrm.yaml'
+    # redDict = sPrm.update(rPrm)
+    # with open(fullCalPath,'w') as file:
+    #   docs = yaml.dump(redDict, file)
+    # print(f'created calibLog at: {fullParPath}')
+
     #masking
-    
+    logger.error(f'masking run: {run}')
     TOF_runWS_msk,mskTag = SNAPMsk(TOF_runWS,rPrm,sPrm) #mask run workspace
+    logger.error(f'masking VCorr')
     TOF_rawVmB_msk,mskTag = SNAPMsk('TOF_rawVmB',rPrm,sPrm)
 
     #convert to d-spacing
-
+    logger.error('converting run to d')
     DSpac_runWS_msk = f'DSpac_{run}_{mskTag}'
     ConvertUnits(InputWorkspace=TOF_runWS_msk,
     OutputWorkspace=DSpac_runWS_msk,
@@ -896,6 +976,7 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
     EMode='Elastic',
     ConvertFromPointData=True)
 
+    logger.error('converting VCorr to d')
     DSpac_VmB_msk = f'DSpac_rawVmB_{mskTag}'
     ConvertUnits(InputWorkspace=TOF_rawVmB_msk,
     OutputWorkspace=f'DSpac_rawVmB_{mskTag}',
@@ -905,6 +986,7 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
 
     #Focus the data and vanadium using DiffractionFocusing for each of requested groups
     
+    logger.error('Diffraction focusing by group')
     for gpNo, focGrp in enumerate(sPrm['focGroupLst']):
       DiffractionFocussing(InputWorkspace=DSpac_runWS_msk,
       OutputWorkspace=f'{DSpac_runWS_msk}_{focGrp}',
@@ -966,5 +1048,158 @@ def SNAPRed(inputRunString,inputMaskString,redSettings):
 
   if cleanUp:
     DeleteWorkspaces(WorkspaceList=TOF_rawVmB_msk)
+  
+  #return reduction parameters. THis is 
+
+def makeLite(inFileName,outFileName):    
+    import numpy as np
+    import h5py
+    import shutil
+    import time
+    print('h5py version:',h5py.__version__)
+
+    time_0 = time.time()
+
+    sumNeigh = [8,8]
+    # inFileName = f'SNAP_{run}.nxs.h5'
+    # outFileName = f'SNAP_{run}.lite.nxs.h5'
+
+    #
+    # Step 1) make a copy of the original file
+    #
+
+    print(f'Copying file: {inFileName}')
+    shutil.copyfile(inFileName,outFileName)
+
+    stepTime = time.time() - time_0
+    totTime = stepTime
+    print(f'    Time to complete step: {stepTime:.4f} sec. Total time to execute: {totTime:.4f}')
 
 
+    print('Relabelling pixel IDs')
+    h5obj = h5py.File(outFileName,'r+')
+
+    #
+    # Step 2) Relabel pixel IDs
+    #
+    time_0 = time.time()
+
+    #Create list of SNAP panel IDs
+    detpanel = []
+    for i in range(1,7):
+        for j in range(1,4):
+            detpanel.append(str(i)+str(j))
+            
+    #Relabel pixel IDs and write to copied file
+    for panel in detpanel:
+        h5eventIDs = h5obj[f'entry/bank{panel}_events/event_id']
+        eventIDs = np.array(h5eventIDs[:])
+        superEventIDs = superID(eventIDs,sumNeigh[0],sumNeigh[0])
+        h5eventIDs[...]=superEventIDs
+
+    stepTime = time.time() - time_0
+    totTime += stepTime
+    print(f'    Time to complete step: {stepTime:.4f} sec. Total time to execute: {totTime:.4f}')
+
+    #
+    # Step 3: Update instrument definition in nxs file
+    #
+    time_0 = time.time()
+
+    print('Updating instrument definition')
+    h5IDF = h5obj['entry/instrument/instrument_xml/data']
+    stringIDF = str(h5IDF[0],encoding='ascii')#[:] #a string containing the IDF
+    lines = stringIDF.split('\n')
+    newLines = []
+    for line in lines:
+        if '<component type="panel"' in line:
+            splitLine = line.split("\"")
+    #        print('Original pixel numbering:',int(splitLine[3]),'step by row:',int(splitLine[7]))
+            idstart = int(splitLine[3])
+            idstepbyrow = int(splitLine[7])
+            newidstart=str(int((idstart/65536)*32**2))
+            newidstepbyrow = str(int(idstepbyrow/sumNeigh[0]))
+            splitLine[3]=newidstart
+            splitLine[7]=newidstepbyrow
+            newLines.append("\"".join(splitLine))
+    #        print('New line:\n',"\"".join(splitLine))
+        elif 'xpixels=' in line:
+            splitLine = line.split("\"")
+            splitLine[1]="32"
+            splitLine[3]="-0.076632"
+            splitLine[5]="+0.004944"
+            newLines.append("\"".join(splitLine))
+        elif 'ypixels=' in line:
+            splitLine = line.split("\"")
+            splitLine[1]="32"
+            splitLine[3]="-0.076632"
+            splitLine[5]="+0.004944"
+            newLines.append("\"".join(splitLine))
+        elif 'left-front-bottom-point' in line:
+            splitLine = line.split("\"")
+            splitLine[1]='-0.002472'
+            splitLine[3]='-0.002472'
+            newLines.append("\"".join(splitLine))
+        elif 'left-front-top-point' in line:
+            splitLine = line.split("\"")
+            splitLine[1]='0.002472'
+            splitLine[3]='-0.002472'
+            newLines.append("\"".join(splitLine))
+        elif 'left-back-bottom-point' in line:
+            splitLine = line.split("\"")
+            splitLine[1]='-0.002472'
+            splitLine[3]='-0.002472'
+            newLines.append("\"".join(splitLine))
+        elif 'right-front-bottom-point' in line:
+            splitLine = line.split("\"")
+            splitLine[1]='0.002472'
+            splitLine[3]='-0.002472'
+            newLines.append("\"".join(splitLine))        
+        else:
+            newLines.append(line)
+            
+    newXMLString = "\n".join(newLines)
+    h5IDF[...]=newXMLString#.encode(encoding='ascii')
+    h5obj.close()
+    #
+    # Finish up
+    #
+    stepTime = time.time() - time_0
+    totTime += stepTime
+    print(f'    Time to complete step: {stepTime:.4f} sec. Total time to execute: {totTime:.4f}')
+    return 
+
+def superID(nativeID,xdim,ydim):
+    import numpy as np
+    #accepts a numpy array of native ID from standard SNAP nexus file and returns a numpy array with 
+    # super pixel ID according to 
+    #provided dimensions xdim and ydim of the super pixel. xdim and ydim shall be multiples of 2
+    #
+
+    Nx = 256 #native number of horizontal pixels 
+    Ny = 256 #native number of vertical pixels 
+    NNat = Nx*Ny #native number of pixels per panel
+    
+    firstPix = (nativeID // NNat)*NNat
+    redID = nativeID % NNat #reduced ID beginning at zero in each panel
+    
+    (i,j) = divmod(redID,Ny) #native (reduced) coordinates on pixel face
+    superi = divmod(i,xdim)[0]
+    superj = divmod(j,ydim)[0]
+
+    #some basics of the super panel   
+    superNx = Nx/xdim #32 running from 0 to 31
+    superNy = Ny/ydim
+    superN = superNx*superNy
+
+    superFirstPix = (firstPix/NNat)*superN
+    
+    super = superi*superNy+superj+superFirstPix
+    super = super.astype('int')
+
+#     print('native ids: ',nativeID)
+#     print('first pixels: ',firstPix)
+#     print('super first pixels: ',superFirstPix)
+    
+    
+    return super

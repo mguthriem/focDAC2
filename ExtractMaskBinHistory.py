@@ -21,9 +21,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import json
 
-inputWS = 'snap48746_lam_8x8' #contains masked bins
+inputWS = 'snap48746lite' #contains masked bins
 outputLoc = '/SNS/SNAP/IPTS-24179/shared/'
-outputName = 'snap48746'
+outputName = 'snap48746lite'
 
 ws = mtd[inputWS]
 h = ws.getHistory()
