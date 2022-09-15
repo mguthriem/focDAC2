@@ -20,8 +20,6 @@ The main reduction script is called `SNAPRed`. In order for `SNAPRed` to work, t
 
 # Background
 
-\[incomplete\]
-
 This project contains several python modules that, together with mantid (mantidproject.org) algorithms are scripted to convert raw neutron diffraction data (collected on the SNAP instrument at the SNS, Spallation Source) into fully reduced files suitable for subsequent refinement using Rietveld approaches.
 
 It is developed for the most common SNAP use case: reducing the data from a single experimental run, contained in a single nexus-format data file, assuming the sample state is constant during the measurement. As such, the measured neutron-event data are not used. This case contrasts with other instruments, where the sample state varies during a single experimental run, and the event data are then binned according to some parameter (time, strain, temperature etc) that varies during the measurement. 
